@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата заказа</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <style>
+        /* Настраиваем цвета так, чтобы они автоматически подстраивались под тему Telegram (темную или светлую) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            background-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
+            border-radius: 12px;
+            padding: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        /* Стиль для блока с инструкциями по оплате */
+        .instructions-box {
+            white-space: pre-line; /* Чтобы сохранялись переносы строк \n из бэкенда */
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        /* Красивая кнопка */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:active {
+            opacity: 0.85;
+        }
+
+        /* Лоадер (анимация загрузки) */
+        .loader {
+            display: none;
+            font-size: 16px;
+            color: var(--tg-theme-hint-color, #999999);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Оформление оплаты</h2>
+        
+        <div id="loader" class="loader">Получаем счёт из базы данных...</div>
+        
+        <div id="invoice-container" style="display: none;">
+            <div id="instructions" class="instructions-box"></div>
+            <button id="paid-button" class="btn">Я оплатил</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
